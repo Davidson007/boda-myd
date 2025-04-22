@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>David & Mariana - Nuestra Boda</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Quicksand:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-image: url("https://i.pinimg.com/1200x/80/b1/f9/80b1f9d39d84fdb0a65360fb846ee83e.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        font-family: "Quicksand", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .title-font {
+        font-family: "Alex Brush", cursive;
+      }
+      .numbers-font {
+        font-family: "Bodoni Moda", serif;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+      }
+      .parallax {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+      }
+      .fade-out {
+        opacity: 0;
+        transition: opacity 1s ease-out;
+      }
+    </style>
+  </head>
+
+  <body class="text-gray-800">
+    <!-- Pantalla de bienvenida -->
+    <div
+      id="welcome-screen"
+      class="fixed inset-0 bg-[#c5d9c5] flex flex-col justify-center items-center z-50"
+    >
+      <h2 class="text-6xl title-font text-green-800 mb-6 font-bold">
+        Mariana & David
+      </h2>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        ¡Te invitamos a nuestra boda!
+      </p>
+      <button
+        id="enterButton"
+        class="bg-green-800 text-white px-6 py-3 rounded-full text-lg hover:bg-green-800 transition duration-300"
+      >
+        Entrar a la invitación
+      </button>
+    </div>
+    <audio id="weddingAudio" preload="auto">
+      <source src="/mnt/data/Yellow.mp3" type="audio/mpeg" />
+      Tu navegador no soporta audio HTML5.
+    </audio>
+
+    <!-- Imagen superior decorativa -->
+    <div
+      class="w-full max-h-40 overflow-hidden flex justify-center items-center mx-auto"
+    >
+      <img
+        src="https://media-api.xogrp.com/images/8141c82e-9a87-4b11-837d-400ef952113a~rt_auto-rs_1024.h?ordering=explicit"
+        class="h-40 object-cover object-center w-full scale-50"
+        alt="Decoración superior"
+      />
+    </div>
+
+    <!-- Título principal -->
+    <section
+      class="text-center pt-10 pb-20 bg-white bg-opacity-70"
+      data-aos="fade-up"
+    >
+      <div class="text-5xl mb-6">
+        <i class="fas fa-heart text-pink-400"></i>
+      </div>
+      <p class="text-2xl text-gray-600"><b>¡NOS CASAMOS!</b></p>
+      <br />
+      <br />
+      <h1 class="text-6xl title-font text-green-700 mb-4 font-bold">
+        Mariana Delgado
+      </h1>
+      <h1 class="text-5xl title-font text-green-700 mb-4 font-bold">&</h1>
+      <h1 class="text-6xl title-font text-green-700 mb-4 font-bold">
+        David Chicaiza
+      </h1>
+      <br />
+      <br />
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        <b>1 Corintios 13:4-8</b>
+        <i
+          >"El Amor es paciente, es bondadoso... <br />
+          Todo lo sufre, todo lo cree, todo lo espera y todo lo soporta.
+          <br /><b>El Amor nunca falla</b>"
+        </i>
+      </p>
+    </section>
+
+    <!-- Sección personalizada para música -->
+    <section class="py-10 px-4 bg-[#c5d9c5] text-center" data-aos="fade-up">
+      <div
+        class="flex items-center justify-center gap-4 max-w-md mx-auto bg-white rounded-xl shadow-md px-4 py-3"
+      >
+        <button
+          id="playPauseBtn"
+          class="text-green-700 text-2xl focus:outline-none"
+        >
+          <i class="fas fa-play"></i>
+        </button>
+
+        <input
+          id="progressBar"
+          type="range"
+          value="0"
+          class="w-full h-1 accent-green-600"
+        />
+
+        <button id="muteBtn" class="text-green-700 text-xl focus:outline-none">
+          <i class="fas fa-volume-up"></i>
+        </button>
+      </div>
+
+      <!-- Audio oculto -->
+      <audio id="weddingAudio" preload="auto" autoplay>
+        <source src="/mnt/data/Yellow.mp3" type="audio/mpeg" />
+        Tu navegador no soporta audio HTML5.
+      </audio>
+    </section>
+
+    <!-- Foto de la pareja -->
+    <section
+      class="relative flex items-center justify-center min-h-[80vh] py-10 parallax"
+      data-aos="zoom-in"
+    >
+      <img
+        src="https://i.postimg.cc/xT5BMTcQ/myD2.jpg"
+        alt="David y Mariana"
+        class="rounded-3xl shadow-2xl w-11/12 max-w-6xl transition-transform duration-700 hover:scale-105 object-cover"
+      />
+      <i
+        class="fas fa-ring text-yellow-500 text-6xl absolute top-5 left-5 animate-bounce"
+      ></i>
+      <i
+        class="fas fa-dove text-white text-5xl absolute bottom-5 right-5 animate-fade"
+      ></i>
+    </section>
+
+    <!-- nuestra historia -->
+    <section
+      class="text-center py-20 px-6 bg-white bg-opacity-80"
+      data-aos="fade-up"
+    >
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        📅 Hace <b>tres años</b> nos conocimos. <br />
+        Hace <b>2 años y un poquito más</b> nos hicimos novios 🙈 <br />
+      </p>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        El <b>19 de octubre de 2024</b>, sellamos nuestro amor con un compromiso
+        lleno de ilusión. 💍<br />
+        Y ahora nos preparamos para decir <b>“sí para siempre”</b> 👰🏻‍♀️🤵🏻 <br />
+      </p>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        Después de tantas risas, momentos compartidos, decisiones difíciles y
+        alguna que otra discusión <br />
+        por no saber que íbamos a pedir para comer, queremos celebrar que
+        <b>el amor fue más fuerte</b>. ❤️❤️ <br />
+        Por eso, queremos <b>invitarte a ser parte</b> de uno de los días más
+        importantes de nuestras vidas. <br />
+      </p>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        Un día lleno de emoción, alegría y detalles que queremos que vivas desde
+        el principio<br />
+        porque nuestro "sí, acepto" tiene <b>hora de inicio</b> y nos encantaría
+        que estés allí <b>justo a tiempo para compartirlo con nosotros</b>. ⏳💒
+        <br />
+      </p>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        También les comentamos que nuestra celebración será
+        <b>solo para adultos</b>, por lo que agradecemos <br />
+        tu comprensión y apoyo para que todos podamos disfrutar de una velada
+        <b>especial y llena de magia</b>. ✨🎆🎇
+      </p>
+      <i
+        class="fas fa-ring text-yellow-500 text-6xl absolute top-5 left-5 animate-bounce"
+      ></i>
+      <i
+        class="fas fa-dove text-white text-5xl absolute bottom-5 right-5 animate-fade"
+      ></i>
+    </section>
+
+    <!-- Fecha y contador -->
+    <section
+      id="contador"
+      class="text-center py-10"
+      style="background-color: #c5d9c5"
+      data-aos="fade-up"
+    >
+      <i
+        class="fas fa-calendar-alt text-green-600 text-3xl absolute top-6 left-6"
+      ></i>
+      <h2 class="text-2xl font-semibold mb-2 text-gray-600">
+        21 DE JUNIO DE 2025 - 4:00 PM
+      </h2>
+      <div id="timer" class="flex justify-center gap-8 font-bold"></div>
+    </section>
+
+    <!-- Dirección -->
+    <section
+      class="text-center py-20 px-6 bg-white bg-opacity-80"
+      data-aos="fade-up"
+    >
+      <i class="fas fa-map-marker-alt text-red-500 text-3xl mb-4"></i>
+      <h3 class="text-2xl font-semibold mb-2 text-gray-600">UBICACIÓN📍</h3>
+
+      <!-- Mapa incrustado -->
+      <div class="flex justify-center mb-4">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.3425792946964!2d-66.95636846398725!3d10.
+      346712350857857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2af365b6be3e5b%3A0x3b515fcebf111227!2s
+      Villa%20el%20Encuentro!5e0!3m2!1sen!2sve!4v1745128744831!5m2!1sen!2sve"
+          width="400"
+          height="300"
+          style="border: 0; border-radius: 12px"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="w-full max-w-2xl"
+        ></iframe>
+      </div>
+
+      <!-- Dirección + link -->
+      <p>
+        <a
+          href="https://www.google.com/maps/place/Villa+el+Encuentro/@10.3467124,-66.9563685,17z"
+          target="_blank"
+          class="text-gray-700 hover:text-gray-900 transition"
+        >
+          <b>Direccion:</b> Villa El Encuentro, San Diego de los Altos, Altos
+          Mirandinos, Estado Miranda.
+        </a>
+      </p>
+    </section>
+
+    <!-- Código de vestimenta -->
+    <section
+      class="text-center py-20 px-6"
+      style="background-color: #c5d9c5"
+      data-aos="fade-up"
+    >
+      <i class="fas fa-user-tie text-green-800 text-3xl mb-4"></i>
+      <h3 class="text-2xl font-semibold mb-2 text-gray-600">
+        CÓDIGO DE VESTIMENTA 🎩👠
+      </h3>
+      <br />
+      <p class="text-base text-gray-500 font-bold"><s>Deportivo</s></p>
+      <p class="text-lg text-gray-900 font-bold">Formal</p>
+      <p class="text-base text-gray-500 font-bold"><s>Semi-Formal</s></p>
+      <p class="text-base text-gray-500 mb-4 font-bold"><s>Casual</s></p>
+      <p class="text-gray-700 hover:text-gray-900 transition">
+        Queremos verlos elegantes, pero no tanto como para que no puedan
+        disfrutar, por eso las recomendaciones de los novios son:
+      </p>
+      <br />
+      <div class="flex flex-col md:flex-row justify-center gap-10 items-start">
+        <!-- Hombres -->
+        <div class="w-full md:w-1/2 text-center" data-aos="fade-right">
+          <img
+            src="https://images.piclumen.com/normal/20250421/10/8bc2813844e24a989b9a4a413dcf77e0.webp"
+            alt="Hombres"
+            class="mx-auto mb-4 w-24 h-24 object-contain border-4 border-white rounded-full shadow-lg"
+          />
+          <h4 class="text-xl font-semibold mb-2">Hombres</h4>
+          <ul class="text-left list-disc list-inside mx-auto max-w-xs">
+            <li>Evitar gorras, shorts o crocs.</li>
+            <li>Evitar camisas 3/4 o mangas cortas.</li>
+            <li>
+              Puedes utilizar traje completo o puedes venir con tu mejor saco.
+            </li>
+            <li>Para destacar no necesitas colores tan llamativos.</li>
+            <li>
+              Perfume para la ocasión y un poquito de repelente no está de más.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Mujeres -->
+        <div class="w-full md:w-1/2 text-center" data-aos="fade-left">
+          <img
+            src="https://images.piclumen.com/normal/20250421/10/a08180ffbe5c4977b3cf5f661a9831b0.webp"
+            alt="Mujeres"
+            class="mx-auto mb-4 w-24 h-24 object-contain border-4 border-white rounded-full shadow-lg"
+          />
+          <h4 class="text-xl font-semibold mb-2">Mujeres</h4>
+          <ul class="text-left list-disc list-inside mx-auto max-w-xs">
+            <li>Vestidos largos.</li>
+            <li>
+              Evita los colores: blanco, beige, rosa viejo y tonos verde pastel.
+            </li>
+            <li>Zapatos cómodos y adecuados para el césped.</li>
+            <li>El amor cobija pero un abrigo en la noche también.</li>
+            <li>
+              El amor esta en el aire y los mosquitos también, lleva tu
+              repelente.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de regalos -->
+    <section class="text-center py-20 px-6 bg-opacity-70" data-aos="fade-up">
+      <i class="fas fa-gift text-pink-500 text-3xl mb-4"></i>
+      <h3 class="text-2xl font-semibold mb-4 text-gray-600">Regalos 🎁</h3>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        Su presencia es nuestro mejor regalo, pero si están considerando darnos
+        algún obsequio, <br />
+        les comentamos que ya tenemos licuadora, vajilla y más cucharas de las
+        que podríamos usar, <br />
+        sin embargo, agradeceremos cualquier contribución que nos ayude a
+        comenzar esta nueva etapa juntos.
+      </p>
+      <br />
+      <div
+        class="text-left max-w-md mx-auto bg-white bg-opacity-90 p-6 rounded-xl shadow-md"
+      >
+        <ul class="list-disc list-inside text-sm sm:text-base">
+          <li>
+            <strong>Banco Mercantil</strong><br />
+            Cuenta: 0105-0618-2016-1810-3849<br />Titular: Anderson Chicaiza<br />CI:
+            V-18.486.546
+          </li>
+          <li class="mt-4">
+            <strong>Pago Móvil</strong><br />
+            Teléfono: 0424-2530165<br />CI: V-28.210.437<br />Titular: Mariana
+            Delgado
+          </li>
+          <li class="mt-4">
+            <strong>Binance Pay</strong><br />
+            ID de Binance: 785 509 46<br />Email: a.chicaiza1992@gmail.com
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Confirmación de asistencia -->
+    <section
+      class="text-center py-20 px-6 bg-white bg-opacity-70"
+      data-aos="fade-up"
+    >
+      <i class="fas fa-envelope-open-text text-green-500 text-3xl mb-4"></i>
+      <h3 class="text-2xl font-semibold mb-4 text-gray-600">
+        ¡CONFIRMA TU ASISTENCIA! 📝
+      </h3>
+      <br />
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        ¡Ojalá contemos contigo!
+      </p>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        Sabemos que faltan muchas emociones, brindis y bailes por compartir,
+        pero antes… <br />
+        <b>¡Necesitamos saber si vienes!</b>
+      </p>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        Por favor, pulsa el botón a continuación para completar el formulario de
+        confirmación. <br />
+        Nos ayudará mucho para la organización y logística de nuestro día
+        esperado.
+      </p>
+      <p class="text-gray-700 mb-4 hover:text-gray-900 transition">
+        🎯 <b>Fecha límite: 30 de abril (sí, sí, es en serio).</b><br />
+        Tu confirmación es imprescindible para que nadie se quede sin asiento…
+        ¡ni sin pastel! <br />
+        ¡Gracias por ayudarnos a que este día sea inolvidable! 💌 <br />
+        <b>ESPERAMOS TU CONFIRMACIÓN.</b>
+      </p>
+      <br />
+      <a
+        href="https://forms.gle/NVgzGsjEdu2APkPKA"
+        target="_blank"
+        class="inline-block bg-green-700 text-white px-8 py-4 rounded-full text-lg hover:bg-green-700 transition-transform transform hover:scale-105 duration-300"
+      >
+        Formulario de Confirmación
+      </a>
+    </section>
+
+    <!-- Imagen inferior decorativa -->
+    <div
+      class="w-full max-h-24 overflow-hidden flex justify-center items-center mx-auto"
+    >
+      <img
+        src="https://media-api.xogrp.com/images/b896cbbe-2581-4576-a168-91c2056fd747~rt_auto-rs_2560.h?ordering=explicit"
+        class="h-32 object-cover object-center w-full scale-75"
+        alt="Decoración inferior"
+      />
+    </div>
+
+    <!-- Pie de página -->
+    <footer
+      class="text-center text-sm text-gray-700 mt-4 mb-8"
+      data-aos="fade-up"
+    >
+      <p>
+        &copy; 2025 Elaborado por
+        <a
+          href="mailto:a.chicaiza1992@gmail.com?subject=Contacto%20por%20tu%20sitio%20web%20de%20boda"
+          class="text-green-700 hover:underline font-semibold"
+          >David & Mariana
+        </a>
+        . Todos los derechos reservados.
+      </p>
+    </footer>
+
+    <!-- codigo de javascript para funcionalidades -->
+    <!-- Script para contador -->
+    <script>
+      const countDownDate = new Date("Jun 21, 2025 16:00:00").getTime();
+      const timerEl = document.getElementById("timer");
+
+      setInterval(() => {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+          .toString()
+          .padStart(2, "0");
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        )
+          .toString()
+          .padStart(2, "0");
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+          .toString()
+          .padStart(2, "0");
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+          .toString()
+          .padStart(2, "0");
+
+        timerEl.innerHTML = `
+        <div class="text-center px-2"class="text-center px-2">
+          <span class="text-5xl text-green-800 numbers-font">${days}</span><br/>
+          <span class="text-sm">Días</span>
+        </div>
+        <div class="text-center px-2"class="text-center px-2">
+          <span class="text-5xl text-green-800 numbers-font">${hours}</span><br/>
+          <span class="text-sm">Horas</span>
+        </div>
+        <div class="text-center px-2"class="text-center px-2">
+          <span class="text-5xl text-green-800 numbers-font">${minutes}</span><br/>
+          <span class="text-sm">Minutos</span>
+        </div>
+        <div class="text-center px-2"class="text-center px-2">
+          <span class="text-5xl text-green-800 numbers-font">${seconds}</span><br/>
+          <span class="text-sm">Segundos</span>
+        </div>
+      `;
+      }, 1000);
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1000 });
+    </script>
+
+    <script>
+      const audio = document.getElementById("weddingAudio");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const muteBtn = document.getElementById("muteBtn");
+      const progressBar = document.getElementById("progressBar");
+
+      // Volumen inicial bajito
+      audio.volume = 0.2;
+
+      // Play/Pause
+      playPauseBtn.addEventListener("click", () => {
+        if (audio.paused) {
+          audio.play();
+          playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+          audio.pause();
+          playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+      });
+
+      // Mute/Unmute
+      muteBtn.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        muteBtn.innerHTML = audio.muted
+          ? '<i class="fas fa-volume-mute"></i>'
+          : '<i class="fas fa-volume-up"></i>';
+      });
+
+      // Actualizar progreso
+      audio.addEventListener("timeupdate", () => {
+        const percentage = (audio.currentTime / audio.duration) * 100;
+        progressBar.value = percentage || 0;
+      });
+
+      // Cambiar progreso manual
+      progressBar.addEventListener("input", () => {
+        audio.currentTime = (progressBar.value / 100) * audio.duration;
+      });
+    </script>
+
+    <!-- Script para Bienvenida -->
+    <script>
+      document.getElementById("enterButton").addEventListener("click", () => {
+        const welcomeScreen = document.getElementById("welcome-screen");
+        const audio = document.getElementById("weddingAudio");
+
+        // Aplica animación fade-out
+        welcomeScreen.classList.add("fade-out");
+
+        // Espera 1 segundo antes de ocultar el div completamente
+        setTimeout(() => {
+          welcomeScreen.style.display = "none";
+        }, 1000);
+
+        // Reproduce la canción
+        audio.volume = 0.2;
+        audio.play().catch((e) => {
+          console.log("No se pudo reproducir el audio automáticamente:", e);
+        });
+      });
+    </script>
+  </body>
+</html>
